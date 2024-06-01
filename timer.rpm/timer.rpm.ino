@@ -12,18 +12,17 @@
   #define DEBUG_PRINTLN(x) 
 #endif
 
-const int enc_pin_A = 4;                                              // rotary encoder first data pin A at D5 pin
-const int enc_pin_B = 5;                                              // rotary encoder second data pin B at D4 pin, if the encoder moved in the wrong direction, swap A and B
+const int enc_pin_A = 5;                                              // rotary encoder first data pin A at D5 pin
+const int enc_pin_B = 4;                                              // rotary encoder second data pin B at D4 pin, if the encoder moved in the wrong direction, swap A and B
 const int enc_pin_SW = 7;                                             // rotary encoder switch button at D7 pin
 const int rpm_pin = 9;                                                // RPM output to step motor at D9 pin  
 const int rpm_en_pin = 8;                                             // step motor driver enable at D8 pin 
 const int dir_pin = 6;                                                // step motor driver rotation direction at D6 pin  
 
-bool colon = true;                                                    // timer colon active at start
 bool off = true;                                                     
 int RPM, lastRPM, last_tempRPM, tempRPM;
 int16_t value, lastValue;
-unsigned long colon_ms, lastAccelTime, lastDecelTime, lastRPMTime, himillis;
+unsigned long lastAccelTime, lastDecelTime, lastRPMTime, himillis;
 
 uint8_t hi[] = {
   0x00, 0x00,
@@ -57,11 +56,11 @@ void setup() {
   pinMode( rpm_en_pin, OUTPUT ); 
   digitalWrite(rpm_en_pin, HIGH);          
   pinMode( dir_pin, OUTPUT );  
-  digitalWrite(dir_pin, HIGH);                               
+  digitalWrite(dir_pin, HIGH);   
+                              
   lastValue = 0;   
   lastAccelTime = 0;
   lastDecelTime = 0;
-  colon_ms = millis();
   himillis = 0;
   RPM=20;
 
